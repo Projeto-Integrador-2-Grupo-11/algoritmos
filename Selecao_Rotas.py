@@ -5,13 +5,13 @@ import time
 # Colocar GPIO no modo de números
 GPIO.setmode(GPIO.BOARD)
 
-# Setar os pinos 11 e 12 como saídas e definir o PWM dos servos
-GPIO.setup(11,GPIO.OUT)
-# Pino 11 para o servo1
-servo1 = GPIO.PWM(11,50) 
-# Pino 12 para o servo2
-GPIO.setup(12,GPIO.OUT)
-servo2 = GPIO.PWM(12,50)
+# Setar os pinos 18 e 22 como saídas e definir o PWM dos servos
+GPIO.setup(18,GPIO.OUT)
+# Pino 18 para o servo1
+servo1 = GPIO.PWM(18,50) 
+# Pino 22 para o servo2
+GPIO.setup(22,GPIO.OUT)
+servo2 = GPIO.PWM(22,50)
 
  
 
@@ -25,38 +25,33 @@ mancha_laranja = 1 # 0 - sem manchas / 1 - com manchas
 servo1.start(0)
 servo2.start(0)
 
- 
-
-
 #Iniciar seleção de rotas 
-
 
 while True:
     if qualidade_laranja==0:
-        # Colocar servo1 em 90º
-        servo1.ChangeDutyCycle(7)
+        # Colocar servo1 em 0º
+        servo1.ChangeDutyCycle(0)
         time.sleep(0.5)
-        servo1.ChangeDutyCycle(7)
+        servo1.ChangeDutyCycle(0)
         if mancha_laranja==0:
-            # Colocar servo2 em 90º
-            servo2.ChangeDutyCycle(7)
+            # Colocar servo2 em 0º
+            servo2.ChangeDutyCycle(0)
             time.sleep(0.5)
-            servo2.ChangeDutyCycle(7)
-            print("boa e sem mancha")
+            servo2.ChangeDutyCycle(0)
+            print("Laranja boa e sem mancha")
         else:
-            # Colocar servo2 em 180º
-            servo2.ChangeDutyCycle(12)
+            # Colocar servo2 em 60º
+            servo2.ChangeDutyCycle(5)
             time.sleep(0.5)
-            servo2.ChangeDutyCycle(7)
-            print("boa com mancha")
+            servo2.ChangeDutyCycle(5)
+            print("Laranja boa com mancha")
     else:
-        # Colocar servo1 em 180º
-        servo1.ChangeDutyCycle(12)
+        # Colocar servo1 em 60º
+        servo1.ChangeDutyCycle(5)
         time.sleep(0.5)
-        servo1.ChangeDutyCycle(7)
-        print("TA PODREEEEE")
+        servo1.ChangeDutyCycle(5)
+        print("Laranja podre")
  
-
 #Limpar variáveis e finalizar o módulo
 servo1.stop()
 servo2.stop()
