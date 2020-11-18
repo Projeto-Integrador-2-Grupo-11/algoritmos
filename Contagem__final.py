@@ -35,6 +35,15 @@ GPIO.setup(PIN_ECHO3, GPIO.IN) #Sensor laranja_grande
 
 while True:
 
+    #Variáveis para guardar o tempo de início do pulso e fim do pulso
+    tempo_inicio_pulso1 = time.time()
+    tempo_inicio_pulso2 = time.time()
+    tempo_inicio_pulso3 = time.time()
+    
+    tempo_fim_pulso1 = time.time()
+    tempo_fim_pulso2 = time.time()
+    tempo_fim_pulso3 = time.time()
+    
     #Gerando um pulso de 1ns no Trigger para acionamento do sensor ultrassônico
     GPIO.output(PIN_TRIGGER1, GPIO.HIGH)
     GPIO.output(PIN_TRIGGER2, GPIO.HIGH)
@@ -46,15 +55,6 @@ while True:
     GPIO.output(PIN_TRIGGER1, GPIO.LOW)
     GPIO.output(PIN_TRIGGER2, GPIO.LOW)
     GPIO.output(PIN_TRIGGER3, GPIO.LOW)
-    
-    #Variáveis para guardar o tempo de início do pulso e fim do pulso
-    tempo_inicio_pulso1 = time.time()
-    tempo_inicio_pulso2 = time.time()
-    tempo_inicio_pulso3 = time.time()
-    
-    tempo_fim_pulso1 = time.time()
-    tempo_fim_pulso2 = time.time()
-    tempo_fim_pulso3 = time.time()
 
     #Tempo para o sensor estabilizar
     time.sleep(0.2)
