@@ -24,17 +24,20 @@ servo2.start(0)
 
 # Iniciar seleção de rotas 
 
-# Comunicação com software através de socket
+# Criação de um objeto socket
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    # Associa um socket a uma interface de rede
     s.bind((HOST, PORT))
+    # Permite que o servidor aceite conexões
     s.listen()
+    # Aceita a conexão
     conn, addr = s.accept()
     with conn:
-        print('Connected by', addr)
         while True:
-            #Variáveis recebidas pelo software de processamento de imagem
+            # Recebe a mensagem do cliente
             data = conn.recv(1024)
-
+            
+            # Refere-se aos bits 01
             if data == 'BOA COM MANCHAS':
                 # Colocar servo1 em 0º
                 servo1.ChangeDutyCycle(0)
@@ -45,7 +48,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 time.sleep(0.5)
                 servo2.ChangeDutyCycle(5)
                 print("Laranja boa com mancha")
-
+            # Refere-se aos bits 00
             elif data == 'BOA SEM MANCHAS':
                 # Colocar servo1 em 0º
                 servo1.ChangeDutyCycle(0)
@@ -56,7 +59,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 time.sleep(0.5)
                 servo2.ChangeDutyCycle(0)
                 print("Laranja boa e sem mancha")
-
+            # Refere-se ao bit 1
             elif data == 'RUIM':
                 # Colocar servo1 em 60º
                 servo1.ChangeDutyCycle(5)
