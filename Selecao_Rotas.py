@@ -1,6 +1,8 @@
 # Bibliotecas
-import RPi.GPIO as GPIO
+
 import time
+
+import FakeRPi.GPIO as GPIO
 
 # Colocar GPIO no modo de números
 GPIO.setmode(GPIO.BOARD)
